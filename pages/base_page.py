@@ -15,3 +15,9 @@ class BasePage:
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
         return self
+
+    def click(self, locator):
+        self.wait.until(EC.element_to_be_clickable(locator)).click()
+
+    def get_text(self, locator):
+        return self.wait.until(EC.visibility_of_element_located(locator)).text
