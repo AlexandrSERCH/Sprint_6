@@ -17,4 +17,4 @@ def site_url():
     return URLS[ENV]["site"]
 
 def order_url():
-    return URLS[ENV]["site"]
+    return URLS[ENV]["order"]
