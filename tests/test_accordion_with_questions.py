@@ -3,14 +3,14 @@ import time
 import allure
 import pytest
 
-from data.accordion_faq import get_index_question_and_answers_with_faq
+from data.accordion_faq_data import get_index_question_and_answers_with_faq
 
 
 class TestAccordionsWithQuestions:
 
     @allure.epic("Главная страница")
     @allure.feature("Блок 'Вопросы о важном'")
-    @allure.severity(allure.severity_level.NORMAL)  # Критичность дефекта при падении теста
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.tag("UI", "regress", "Главная страница")
     @allure.label("owner", "Александр")
     @allure.title("Отображение ожидаемых ответов при нажатии на вопрос")

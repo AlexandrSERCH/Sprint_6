@@ -2,8 +2,9 @@ import allure
 import pytest
 from selenium import webdriver
 
-from core.config import site_url
+from core.config import site_url, order_url
 from pages.main_page import MainPage
+from pages.order_page import OrderPage
 from utlis.attach import attach_screenshot
 
 
@@ -25,6 +26,13 @@ def main_page(browser):
 
     return MainPage(browser)
 
+@pytest.fixture
+def order_page(browser):
+    url = order_url()
+    with allure.step(f"Открыть главную страницу: {url}"):
+        browser.get(url)
+
+    return OrderPage(url)
 
 '''
 Хук, который отлавливает момент падения теста и делает скриншот.
