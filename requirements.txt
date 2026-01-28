@@ -3,3 +3,4 @@ allure-python-commons==2.15.3
 pytest==9.0.2
 pytest-xdist==3.8.0
 selenium==4.40.0
+faker
