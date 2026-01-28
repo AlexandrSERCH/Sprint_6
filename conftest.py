@@ -32,7 +32,7 @@ def order_page(browser):
     with allure.step(f"Открыть главную страницу: {url}"):
         browser.get(url)
 
-    return OrderPage(url)
+    return OrderPage(browser)
 
 '''
 Хук, который отлавливает момент падения теста и делает скриншот.
