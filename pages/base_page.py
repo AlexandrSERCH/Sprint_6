@@ -10,6 +10,9 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
 
+    def is_visible(self, locator):
+        return self.wait.until(EC.visibility_of_element_located(locator))
+
     def scroll_to(self, locator):
         element = self.wait.until(EC.visibility_of_element_located(locator))
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
