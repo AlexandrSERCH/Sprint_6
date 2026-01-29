@@ -3,12 +3,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-
 class BasePage:
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 10)
+        self.wait = WebDriverWait(self.driver, 15)
 
     def is_visible(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
@@ -30,3 +29,17 @@ class BasePage:
         element.clear()
         element.send_keys(text)
 
+    def switch_to_second_tab(self):
+        current = self.driver.current_window_handle # текущее кол-во хэндлесов (табов)
+        self.wait.until(lambda d: len(d.window_handles) == 2) # ждём, пока появится новый
+        second = next(h for h in self.driver.window_handles if h != current) # записываем в переменную
+        self.driver.switch_to.window(second) # переключаемся на его
+
+        return self
+
+    def title_equal(self, expected_title):
+        try:
+            return self.wait.until(EC.title_is(expected_title))
+        except:
+            current_url = self.driver.current_url
+            raise AssertionError(f"Переданного заголовка: '{expected_title}' нет на странице: '{current_url}'")
