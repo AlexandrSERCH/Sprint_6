@@ -8,7 +8,7 @@ class TestCreateOrder:
 
     @allure.epic("Заказы")
     @allure.feature("Оформление заказа")
-    @allure.severity(allure.severity_level.CRITICAL)  # Критичность дефекта при падении теста
+    @allure.severity(allure.severity_level.CRITICAL)
     @allure.tag("UI", "regress", "Заказы")
     @allure.label("owner", "Александр")
     @allure.title("Создание заказа")
