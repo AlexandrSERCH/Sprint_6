@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 
@@ -23,3 +25,14 @@ class TestCreateOrder:
          .click_next_button_on_first_order_page()
          )
 
+        (order_page
+         .enter_delivery_date(order_data.delivery_date.value)
+         .select_rental_period(order_data.rental_period.value)
+         .select_color(order_data.color.name)
+         .enter_comment(order_data.comment)
+         .click_order_button_under_form()
+         .confirm_order())
+
+        order_page.succes_modal_with_text("Заказ оформлен")
+
+        time.sleep(3)
