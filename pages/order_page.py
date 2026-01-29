@@ -1,5 +1,3 @@
-from enum import Enum
-
 import allure
 from selenium.webdriver.common.by import By
 

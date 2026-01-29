@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 
@@ -34,5 +32,3 @@ class TestCreateOrder:
          .confirm_order())
 
         order_page.succes_modal_with_text("Заказ оформлен")
-
-        time.sleep(3)
