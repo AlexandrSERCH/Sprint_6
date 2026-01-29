@@ -39,7 +39,7 @@ def get_order_datasets():
         TestData(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
-            address_delivery=f"{fake.street_name()}{fake.building_number()}",
+            address_delivery=f"{fake.street_name()}{fake.random_int(1, 5000)}",
             metro_station=MetroStation.SOKOLNIKI,
             phone=fake.random_int(70000000000, 79999999999),
             delivery_date=DeliveryDate.TOMORROW,
@@ -50,7 +50,7 @@ def get_order_datasets():
         TestData(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
-            address_delivery=f"{fake.street_name()} {fake.building_number()}",
+            address_delivery=f"{fake.street_name()}{fake.random_int(1, 5000)}",
             metro_station=MetroStation.UNIVERSITY,
             phone=fake.random_int(70000000000, 79999999999),
             delivery_date=DeliveryDate.DAY_AFTER_TOMORROW,
