@@ -7,6 +7,10 @@ from pages.base_page import BasePage
 
 class OrderPage(BasePage):
 
+    # Элементы хедера
+    LOGO_SCOOTER = (By.XPATH, ".//img[@alt='Scooter']")
+    LOGO_YANDEX = (By.XPATH, ".//img[@alt='Yandex']")
+
     # Первая страница заказа
 
     FIRST_NAME_FIELD = (By.XPATH, ".//input[contains(@placeholder, 'Имя')]")
@@ -144,3 +148,15 @@ class OrderPage(BasePage):
         with allure.step(f"Текст в модальном окне содежит ожидаемый текст: '{expected_text}'"):
             actual_text = self.get_text(self.SUCCESS_ORDER_MODAL_WINDOW)
             assert expected_text in actual_text
+
+    @allure.step("Нажать на лого 'Самокат'")
+    def click_scooter_logo(self):
+        self.click(self.LOGO_SCOOTER)
+
+        return self
+
+    @allure.step("Нажать на лого 'Яндекс'")
+    def click_yandex_logo(self):
+        self.click(self.LOGO_YANDEX)
+
+        return self
