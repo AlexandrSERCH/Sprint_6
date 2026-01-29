@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 
@@ -23,3 +25,8 @@ class TestCreateOrder:
          .click_next_button_on_first_order_page()
          )
 
+        (order_page
+         .enter_delivery_date(order_data.delivery_date.value)
+         .select_rental_period(order_data.rental_period.value))
+
+        time.sleep(3)
