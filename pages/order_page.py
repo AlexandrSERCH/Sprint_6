@@ -12,7 +12,6 @@ class OrderPage(BasePage):
     LOGO_YANDEX = (By.XPATH, ".//img[@alt='Yandex']")
 
     # Первая страница заказа
-
     FIRST_NAME_FIELD = (By.XPATH, ".//input[contains(@placeholder, 'Имя')]")
     LAST_NAME_FIELD = (By.XPATH, ".//input[contains(@placeholder, 'Фамилия')]")
     ADDRESS_DELIVERY_FIELD = (By.XPATH, ".//input[contains(@placeholder, 'Адрес')]")
@@ -22,7 +21,6 @@ class OrderPage(BasePage):
     NEXT_BUTTON_ON_FIRST_ORDER_PAGE = (By.XPATH, ".//div[contains(@class, 'NextButton')]//button")
 
     # Вторая страница заказа
-
     DELIVERY_DATE_FIELD = (By.XPATH, ".//input[contains(@placeholder, 'Когда привезти')]")
     CURRENT_DAY_IN_DATE_PICKER = (By.XPATH, ".//div[@class='react-datepicker']//div[@tabindex=0]")
     RENTAL_PERIOD_FILED = (By.CLASS_NAME, "Dropdown-control")
@@ -30,6 +28,7 @@ class OrderPage(BasePage):
     ORDER_BUTTON_UNDER_FORM = (By.XPATH, ".//div[contains(@class, 'Order_Buttons')]/button[text()='Заказать']")
     BUTTON_CONFIRM_ODER = (By.XPATH, ".//div[contains(@class, 'Order_Modal_')]//button[text()='Да']")
     SUCCESS_ORDER_MODAL_WINDOW = (By.XPATH, ".//div[contains(@class, 'Order_ModalHeader')]")
+
 
     def get_locator_from_current_day(self, offset_day):
         return By.XPATH, f"{self.CURRENT_DAY_IN_DATE_PICKER[1]}/following-sibling::div[{offset_day}]"
@@ -39,8 +38,12 @@ class OrderPage(BasePage):
         return By.XPATH, f".//div[text()='{value}']"
 
     @staticmethod
-    def get_locator_color(value):
-        return By.ID, value
+    def get_locator_color_input(value):
+        return By.XPATH, f".//input[@id='{value}']"
+
+    @staticmethod
+    def get_locator_color_text(value):
+        return By.XPATH, f".//input[@id='{value}']/.."
 
     @allure.step("Заполнить имя: {first_name}")
     def enter_first_name(self, first_name: str):
@@ -116,10 +119,14 @@ class OrderPage(BasePage):
 
             return self
 
-    @allure.step("Выбрать цвет")
     def select_color(self, color: str):
-        locator = self.get_locator_color(color.lower())
-        self.click(locator)
+        locator_input = self.get_locator_color_input(color.lower())
+        locator_text = self.get_locator_color_text(color.lower())
+
+        text_color = self.get_text(locator_text)
+
+        with allure.step(f"Нажать на чекбокс цвета: '{text_color}'"):
+            self.click(locator_input)
 
         return self
 

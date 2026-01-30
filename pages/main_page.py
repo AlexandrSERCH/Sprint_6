@@ -21,16 +21,22 @@ class MainPage(BasePage):
 
         return self
 
-    @allure.step("Нажать на вопрос № {index}")
     def click_on_question_from_faq(self, index: str):
         locator = self.get_locator_question_in_faq(index)
-        self.click(locator)
+
+        question_text = self.get_text(locator)
+        with allure.step(f"Нажать на вопрос: '{question_text}'"):
+            self.click(locator)
 
         return self
 
-    @allure.step("Получить текст ответа на вопрос № {index}")
     def get_text_answer_from_question(self, index: str):
         locator = self.get_locator_answer_in_faq(index)
 
-        return self.get_text(locator)
+        answer_text = self.get_text(locator)
+        with allure.step(f"Получить фактический текст ответа: '{answer_text}'"):
+            return answer_text
+
+
+
 

@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 
@@ -21,6 +19,6 @@ class TestAccordionsWithQuestions:
 
         actual_answer_text = main_page.get_text_answer_from_question(index)
 
-        with allure.step(f"Проверить, что фактический текст ответа соответствует ожидаемому"):
+        with allure.step(f"Проверить, что ожидаемый текст: ответа '{expected_answer_text}' соответствует фактическому"):
             assert actual_answer_text == expected_answer_text
 
