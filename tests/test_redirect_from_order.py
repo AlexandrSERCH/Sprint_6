@@ -11,11 +11,11 @@ class TestRedirectFromOrder:
     @allure.tag("UI", "regress", "Заказы")
     @allure.label("owner", "Александр")
     @allure.title("Редирект со страницы заказа на главную")
-    def test_redirect_from_order_to_main_page(self, browser, order_page):
+    def test_redirect_from_order_to_main_page(self, order_page):
         order_page.click_scooter_logo()
 
         expected_url = site_url()
-        actual_url = browser.current_url
+        actual_url = order_page.get_current_url()
 
         with allure.step("Успешный переход на главную страницу"):
             assert actual_url == expected_url
