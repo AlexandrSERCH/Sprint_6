@@ -26,16 +26,16 @@ class TestRedirectFromOrder:
     @allure.tag("UI", "regress", "Заказы")
     @allure.label("owner", "Александр")
     @allure.title("Редирект со страницы заказа на Дзен")
-    def test_redirect_from_order_to_dzen_page(self, base_page, order_page):
+    def test_redirect_from_order_to_dzen_page(self, order_page):
         expected_title = "Дзен — главная новостная информационная платформа, которая помогает миллионам людей узнавать, что происходит в мире."
 
         order_page.click_yandex_logo()
 
         with allure.step("Переход на открывшуюся вкладку"):
-            base_page.switch_to_second_tab()
+            order_page.switch_to_second_tab()
 
         with allure.step(f"Заголовок перенаправенной страницы равен ожидаемому заголовку: '{expected_title}'"):
-            assert base_page.title_equal(expected_title)
+            assert order_page.title_equal(expected_title)
 
 
 
