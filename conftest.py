@@ -3,7 +3,6 @@ import pytest
 from selenium import webdriver
 
 from core.config import site_url, order_url
-from pages.base_page import BasePage
 from pages.main_page import MainPage
 from pages.order_page import OrderPage
 from utlis.attach import attach_screenshot
@@ -18,10 +17,6 @@ def browser():
 
     attach_screenshot(driver)
     driver.quit()
-
-@pytest.fixture
-def base_page(browser):
-    return BasePage(browser)
 
 @pytest.fixture
 def main_page(browser):
