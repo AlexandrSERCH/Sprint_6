@@ -9,6 +9,9 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 15)
 
+    def get_current_url(self):
+        return self.driver.current_url
+
     def is_visible(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
 
